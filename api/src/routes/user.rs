@@ -1,5 +1,3 @@
-use std::vec::IntoIter;
-
 use crate::{database::get_connection, view_models::user::User};
 use ::entity::user;
 use rocket::response::status::Accepted;
@@ -7,7 +5,7 @@ use rocket::serde::json::Json;
 use sea_orm::*;
 
 #[get("/", format = "json")]
-pub async fn get_users<'r>() -> Json<Vec<user::Model>> {
+pub async fn get_users() -> Json<Vec<user::Model>> {
     let db = get_connection().await;
 
     Json(
